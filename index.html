@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auto-fill Google Form</title>
+</head>
+<body>
+  <h2>Select Department</h2>
+
+  <label for="department">Department:</label>
+  <select id="department" onchange="fillDetails()">
+    <option value="">-- Select --</option>
+    <option value="HR">Human Resources</option>
+    <option value="IT">IT Support</option>
+    <option value="Finance">Finance</option>
+  </select>
+
+  <br><br>
+
+  <label>Manager:</label>
+  <input type="text" id="manager" readonly><br><br>
+
+  <label>Location:</label>
+  <input type="text" id="location" readonly><br><br>
+
+  <form action="https://docs.google.com/forms/d/e/1FAIpQLSciWOAiYnWHjAsfB3jWPU5I20QBCOV2Kw_4-_ag6j8q4yG9Hw/formResponse" method="POST" target="_blank">
+    <!-- Real Google Form entry field names -->
+    <input type="hidden" name="entry.378593391" id="entry-department">
+    <input type="hidden" name="entry.360857025" id="entry-location">
+    <input type="hidden" name="entry.1363433505" id="entry-manager">
+
+    <button type="submit">Submit to Google Form</button>
+  </form>
+
+  <script>
+    const departmentDetails = {
+      HR: { manager: "Alice Johnson", location: "Building A, Floor 3" },
+      IT: { manager: "Bob Smith", location: "Building B, Floor 1" },
+      Finance: { manager: "Carol Martinez", location: "Building C, Floor 2" }
+    };
+
+    function fillDetails() {
+      const dept = document.getElementById("department").value;
+      const details = departmentDetails[dept] || { manager: "", location: "" };
+
+      // Displayed fields
+      document.getElementById("manager").value = details.manager;
+      document.getElementById("location").value = details.location;
+
+      // Hidden form fields
+      document.getElementById("entry-department").value = dept;
+      document.getElementById("entry-manager").value = details.manager;
+      document.getElementById("entry-location").value = details.location;
+    }
+  </script>
+</body>
+</html>
