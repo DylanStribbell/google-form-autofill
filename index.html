@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,7 +104,7 @@
     <div><strong>FILE NO. IR0000<span class="highlight-red">###</span></strong></div>
   </div>
 
-  <form>
+  <form action="https://docs.google.com/forms/d/e/1FAIpQLSciWOAiYnWHjAsfB3jWPU5I20QBCOV2Kw_4-_ag6j8q4yG9Hw/formResponse" method="POST" target="_blank">
     <div class="section">
       <div class="section-title">DETECTIVE INFORMATION</div>
       <div class="row">
@@ -146,7 +147,7 @@
     <div class="section">
       <div class="section-title">INVESTIGATORS REVIEW</div>
       <div class="row">
-        <div class="cell"><label class="label">Investigator’s Name:</label><input type="text" name="investigatorName"></div>
+        <div class="cell"><label class="label">Supervisor’s Name:</label><input type="text" name="investigatorName"></div>
         <div class="cell"><label class="label">Investigator’s Rank:</label><input type="text" name="investigatorRank"></div>
         <div class="cell"><label class="label">Investigator’s Badge Number:</label><input type="text" name="investigatorBadge"></div>
       </div>
@@ -158,8 +159,27 @@
         <div class="cell"><label class="label">Investigator’s Signature:</label><input type="text" name="signature"></div>
       </div>
     </div>
+  
+    <input type="hidden" name="entry.378593391" id="entry-department">
+    <input type="hidden" name="entry.360857025" id="entry-location">
+    <input type="hidden" name="entry.1363433505" id="entry-manager">
+    <div style="text-align: center; margin-top: 20px;">
+      <button type="submit">Submit to Google Form</button>
+    </div>
   </form>
+
 </div>
 
+
+  <script>
+    function updateHiddenFields() {
+      const now = new Date();
+      const formattedDate = now.toLocaleString();
+      document.getElementById('entry-location').value = formattedDate;
+    }
+
+    document.querySelector('form').addEventListener('submit', updateHiddenFields);
+  </script>
 </body>
+
 </html>
