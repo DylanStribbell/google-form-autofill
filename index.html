@@ -2,56 +2,164 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Auto-fill Google Form</title>
+  <title>Investigative Report Form</title>
+  <style>
+    body {
+      font-family: Arial, serif;
+      background: #f1f1f1;
+      padding: 20px;
+    }
+
+    .report-container {
+      background: white;
+      border: 1px solid #999;
+      padding: 10px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin: 0;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    .section {
+      border: 1px solid #333;
+      margin-top: 15px;
+    }
+
+    .section-title {
+      background: #555;
+      color: white;
+      text-align: center;
+      font-weight: bold;
+      padding: 5px;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .cell {
+      flex: 1;
+      padding: 8px;
+      border-top: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+    }
+
+    .cell:last-child {
+      border-right: none;
+    }
+
+    .label {
+      font-weight: bold;
+      margin-bottom: 2px;
+      display: block;
+    }
+
+    .highlight-red {
+      color: red;
+    }
+
+    input[type="text"], select, textarea {
+      width: 100%;
+      padding: 5px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .pill {
+      padding: 2px 8px;
+      border-radius: 10px;
+      display: inline-block;
+      font-size: 13px;
+    }
+
+    .pill.opened { background: #666; color: white; }
+    .pill.test { background: #1abc9c; color: white; }
+    .pill.pending { background: #aaa; }
+    .pill.issued { background: #c0392b; color: white; }
+  </style>
 </head>
 <body>
-  <h2>Select Department</h2>
 
-  <label for="department">Department:</label>
-  <select id="department" onchange="fillDetails()">
-    <option value="">-- Select --</option>
-    <option value="HR">Human Resources</option>
-    <option value="IT">IT Support</option>
-    <option value="Finance">Finance</option>
-  </select>
+<div class="report-container">
+  <h1><em>TORONTO POLICE SERVICE</em></h1>
+  <h2>INVESTIGATIVE REPORT</h2>
+  <div class="header">
+    <div></div>
+    <div><strong>FILE NO. IR0000<span class="highlight-red">###</span></strong></div>
+  </div>
 
-  <br><br>
+  <form>
+    <div class="section">
+      <div class="section-title">DETECTIVE INFORMATION</div>
+      <div class="row">
+        <div class="cell"><label class="label">Name:</label><input type="text" name="detectiveName"></div>
+        <div class="cell"><label class="label">Rank:</label><input type="text" name="rank"></div>
+        <div class="cell"><label class="label">Badge Number:</label><input type="text" name="badgeNumber"></div>
+      </div>
+      <div class="row">
+        <div class="cell"><label class="label">Date of Report:</label><input type="text" name="reportDate"></div>
+        <div class="cell"><label class="label">Status:</label><select name="status"><option>Opened</option><option>Closed</option></select></div>
+        <div class="cell"><label class="label">Supervisor Sign:</label><select name="supervisorSign"><option>Pending</option><option>Signed</option></select></div>
+      </div>
+    </div>
 
-  <label>Manager:</label>
-  <input type="text" id="manager" readonly><br><br>
+    <div class="section">
+      <div class="section-title">INFORMATION SECTION</div>
+      <div class="row">
+        <div class="cell"><label class="label">Suspect(s) Name:</label><input type="text" name="suspectName"></div>
+        <div class="cell"><label class="label">Investigation Type:</label><select name="investigationType"><option>Test</option><option>Surveillance</option><option>Interview</option></select></div>
+        <div class="cell"><label class="label">Date of Complaint:</label><input type="text" name="complaintDate"></div>
+      </div>
+      <div class="row">
+        <div class="cell" style="flex: 1 0 100%;"><label class="label">Complaint:</label><input type="text" name="complaint"></div>
+      </div>
+      <div class="row">
+        <div class="cell" style="flex: 1 0 100%;"><label class="label">Complainitive Statement:</label><textarea name="complainantStatement"></textarea></div>
+      </div>
+    </div>
 
-  <label>Location:</label>
-  <input type="text" id="location" readonly><br><br>
+    <div class="section">
+      <div class="section-title">OFFICER INTERVIEW</div>
+      <div class="cell" style="flex: 1 0 100%;"><textarea name="officerInterview"></textarea></div>
+    </div>
 
-  <form action="https://docs.google.com/forms/d/e/1FAIpQLSciWOAiYnWHjAsfB3jWPU5I20QBCOV2Kw_4-_ag6j8q4yG9Hw/formResponse" method="POST" target="_blank">
-    <!-- Real Google Form entry field names -->
-    <input type="hidden" name="entry.378593391" id="entry-department">
-    <input type="hidden" name="entry.360857025" id="entry-location">
-    <input type="hidden" name="entry.1363433505" id="entry-manager">
+    <div class="section">
+      <div class="section-title">EVIDENCE SECTION</div>
+      <div class="cell" style="flex: 1 0 100%;"><textarea name="evidence"></textarea></div>
+    </div>
 
-    <button type="submit">Submit to Google Form</button>
+    <div class="section">
+      <div class="section-title">INVESTIGATORS REVIEW</div>
+      <div class="row">
+        <div class="cell"><label class="label">Investigator’s Name:</label><input type="text" name="investigatorName"></div>
+        <div class="cell"><label class="label">Investigator’s Rank:</label><input type="text" name="investigatorRank"></div>
+        <div class="cell"><label class="label">Investigator’s Badge Number:</label><input type="text" name="investigatorBadge"></div>
+      </div>
+      <div class="row">
+        <div class="cell" style="flex: 1 0 100%;"><label class="label">Investigator’s Narrative:</label><textarea name="narrative"></textarea></div>
+      </div>
+      <div class="row">
+        <div class="cell"><label class="label">Investigator’s Action:</label><select name="action"><option>DA Issued</option><option>Cleared</option></select></div>
+        <div class="cell"><label class="label">Investigator’s Signature:</label><input type="text" name="signature"></div>
+      </div>
+    </div>
   </form>
+</div>
 
-  <script>
-    const departmentDetails = {
-      HR: { manager: "Alice Johnson", location: "Building A, Floor 3" },
-      IT: { manager: "Bob Smith", location: "Building B, Floor 1" },
-      Finance: { manager: "Carol Martinez", location: "Building C, Floor 2" }
-    };
-
-    function fillDetails() {
-      const dept = document.getElementById("department").value;
-      const details = departmentDetails[dept] || { manager: "", location: "" };
-
-      // Displayed fields
-      document.getElementById("manager").value = details.manager;
-      document.getElementById("location").value = details.location;
-
-      // Hidden form fields
-      document.getElementById("entry-department").value = dept;
-      document.getElementById("entry-manager").value = details.manager;
-      document.getElementById("entry-location").value = details.location;
-    }
-  </script>
 </body>
 </html>
